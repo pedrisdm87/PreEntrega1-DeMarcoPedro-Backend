@@ -1,20 +1,20 @@
 import fs from 'fs';
 
 export class ProductManager {
-    #path
+    #path = "./data/products.json";
 
     constructor(path) {
         this.#path = path;
         this.#init()
     }
 
-    async init() {
+    async #init() {
         if (!fs.existsSync(this.#path)) {
             await fs.promises.writeFile(this.#path, JSON.stringify([], null, 2))
         }
     }
 
-    #generatID(products) {
+    #generateID(products) {
         return (products.length === 0) ? 1 : products[products.length - 1].id +1
     }
 

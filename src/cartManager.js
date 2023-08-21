@@ -4,14 +4,14 @@ import { ProductManager } from "./productManager.js";
 const productManager = new ProductManager("./data/product.json");
 
 export class CartManager {
-  #path;
+  #path ="../data/cart.json";
 
   constructor(path) {
     this.#path = path;
     this.#init();
   }
 
-  async init() {
+  async #init() {
     if (!fs.existsSync(this.#path)) {
       await fs.promises.writeFile(this.#path, JSON.stringify([], null, 2));
     }

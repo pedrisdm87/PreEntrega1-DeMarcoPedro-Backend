@@ -21,4 +21,6 @@ router.get('/:cid', async (req, res) => {
         const error = result.split(' ')
         return res.status(parseInt(error[0].slice(1,4))).json({ error: result.slice(6) })
     }
-    res.status(200).json({ status: 'success', payload: result })
+    res.status(200).json({ status: 'success', payload: result })})
+
+    export default router 
