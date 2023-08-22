@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:pid', async (req, res) => {
-    const id = parseInt(req.params.pid)
-    const result = await productManager.getProductsById(id)
+    const pid = parseInt(req.params.pid)
+    const result = await productManager.getProductById(pid)
     if (typeof result == 'string') {
         const error = result.split(' ')
         return res.status (parseInt(error[0].slice(1,4))).json ({ error: result.slice (6) })
