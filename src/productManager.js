@@ -42,7 +42,7 @@ class ProductManager {
   async getProductById(pid) {
     let data = await fs.promises.readFile(this.#path, this.#format);
     let products = JSON.parse(data);
-    let product = products.find((item) => item.id === id);
+    let product = products.find((item) => item.id === pid);
     if (!product) return `[ERR] Not found id product`;
     return product;
   }
@@ -76,7 +76,7 @@ class ProductManager {
   async deleteProduct(pid) {
     let data = await fs.promises.readFile(this.#path, this.#format);
     let products = JSON.parse(data);
-    let newProducts = products.filter((item) => item.id !== id);
+    let newProducts = products.filter((item) => item.id !== pid);
     if (products.length !== newProducts.length) {
       await fs.promises.writeFile(
         this.#path,
@@ -92,7 +92,7 @@ class ProductManager {
     let data = await fs.promises.readFile(this.#path, this.#format);
     let products = JSON.parse(data);
     let newProducts = products.map((item) => {
-      if (item.pid === pid) {
+      if (item.id === id) {
         return {
           ...item,
           ...updatedProduct,
@@ -103,7 +103,9 @@ class ProductManager {
       this.#path,
       JSON.stringify(newProducts, null, 2)
     );
-    return newProducts.find((item) => item.id === id);
+    return newProducts.find((item) => item.id === pid);
   }
 }
+
+
 export default ProductManager;
