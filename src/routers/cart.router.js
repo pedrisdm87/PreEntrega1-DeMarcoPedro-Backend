@@ -15,8 +15,8 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/:cid', async (req, res) => {
-    const id = parseInt(req.params.cid)
-    const result = await cartManager.getProductsFormCart(id)
+    const cid = parseInt(req.params.cid)
+    const result = await cartManager.getProductsFormCart(cid)
     if (typeof result == 'string') {
         const error = result.split(' ')
         return res.status(parseInt(error[0].slice(1,4))).json({ error: result.slice(6) })

@@ -30,6 +30,7 @@ export class CartManager {
     return cartToAdd;
   }
 
+
   async getProductsFromCart(id) {
     if (!fs.existsSync(this.#path)) return "[500] DB file does not exist.";
     let data = await fs.promises.readFile(this.#path, "utf-8");
