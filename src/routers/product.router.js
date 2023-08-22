@@ -26,16 +26,15 @@ router.get('/:pid', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async(req, res)=>{
     const product = req.body
     const result = await productManager.addProduct(product)
-    if (typeof result == 'string') {
-        const error = result.split(' ')
-        return res.status (parseInt(error[0].slice(1,4))).json({ error: result.slice (6) })
-    }
-    res.status(201).json ({ status: 'succes', payload: result })
-    
-})
+    if(!result) return res.status(404).json({status: 'error', error: 'no se puede subir'})
+   
+    return res.status(201).json({status: 'success', payload: result})
+  })
+
+
 
 router.put('/:pid', async (req, res) => {
     const id = parseInt(req.params.pid)
