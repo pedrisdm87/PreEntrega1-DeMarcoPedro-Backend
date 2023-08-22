@@ -1,5 +1,5 @@
 import fs from 'fs';
-class ProductManager {
+export class ProductManager {
   #path;
   #_products = [];
   #format = "utf-8";
@@ -108,4 +108,4 @@ class ProductManager {
 }
 
 
-export default ProductManager;
+
