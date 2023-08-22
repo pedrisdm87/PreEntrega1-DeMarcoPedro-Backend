@@ -24,7 +24,7 @@ export class CartManager {
     if (!fs.existsSync(this.#path)) return "[500] DB file does not exist.";
     let data = await fs.promises.readFile(this.#path, "utf-8");
     let carts = JSON.parse(data);
-    const cartToAdd = { id: this.#generateID(carts), products: [] };
+    const cartToAdd = { cid: this.#generateID(carts), products: [] };
     carts.push(cartToAdd);
     await fs.promises.writeFile(this.#path, JSON.stringify(carts, null, 2));
     return cartToAdd;
