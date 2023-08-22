@@ -23,4 +23,16 @@ router.get('/:cid', async (req, res) => {
     }
     res.status(200).json({ status: 'success', payload: result })})
 
+    router.post('/:cid/product/:pid', async (req, res) => {
+        const cartId = parseInt(req.params.cid);
+        const productId = parseInt(req.params.pid);
+        const result = await cartManager.addProductsToCart(cid, pid)
+        if (typeof result === 'string') {
+            const error = result.split('');
+            return res.status(404).json({ status: 'error', payload: error });
+        }
+        res.status(200).json({ status: 'success', payload: result });
+    });
+    
+
     export default router 
